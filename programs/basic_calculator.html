@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+
+<body ng-app="calculat">
+	<div ng-controller="calcController">
+		<input type="number" ng-model="first_val">
+		<button ng-model="opertor">{{opertor}}</button>
+		<input type="number" ng-model="second_val"> <button ng-click="result_cal()"> =</button> <span> {{result_vall}} </span>
+		<p></p>
+		<button ng-click="calcs('+')"> + </button>
+		<button ng-click="calcs('-')"> - </button>
+		<button ng-click="calcs('/')"> / </button>
+		<button ng-click="calcs('*')"> * </button>
+	</div>
+
+	<script>
+		var myCalc = angular.module("calculat", []);
+
+		myCalc.controller('calcController', function($scope){
+			$scope.opertor = "Select Operation Type";
+			$scope.calcs = function(ope){
+				 $scope.opertor = ope;
+			};
+
+			$scope.result_cal = function(){
+		        switch ($scope.opertor) {
+		            case '+':
+						$scope.result_vall = $scope.first_val + $scope.second_val;
+		                break;
+		            case '-':
+						$scope.result_vall = $scope.first_val - $scope.second_val;
+		                break;
+		            case '*':
+						$scope.result_vall = $scope.first_val * $scope.second_val;
+		                break;
+		            case '/':
+						$scope.result_vall = $scope.first_val / $scope.second_val;
+		                break;                
+		        }
+			}
+		});
+	</script>
+</body>
+</html>
